@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.IO;
-using System.Threading;
-using System.Timers;
-using System.Windows.Forms;
 
-namespace Primary_Number
+namespace Prime_Numbers
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -46,36 +46,25 @@ namespace Primary_Number
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Division = new List<int>(78500);
-            Division.Add(2);
-            Division.Add(3);
-            int primeIndex;
-            for (int i = 5; i <= 1000000; i++)
-            {
-                if (i % 6 == 1 || i % 6 == 5)
-                {
-                    bool prime = true;
-                    double y = Math.Sqrt(i);
-                    primeIndex = 0;
-                    while (Division[primeIndex] <= y)
-                    {
-                        if (i % Division[primeIndex] == 0)
-                        {
-                            prime = false;
-                            break;
-                        }
-                        primeIndex++;
-                    }
-                    if (prime == true)
-                        Division.Add(i);
-                }
-                else
-                    continue;
-            }
+            bool[] div = new bool[1000001];
+            for (int i = 0; i <= 1000000; i++)
+                div[i] = false;
+            Division = new List<int>();
+            for (int i = 2; i <= 1000; i++)
+                if (!div[i])
+                    Parallel.For(2, 1000000 / i + 1, (j) => { div[j * i] = true; });
+            for (int i = 2; i < div.Length; i++)
+                if (!div[i])
+                    Division.Add(i);
             if (Properties.Settings.Default.Language)
                 Labels = EnLabels;
             else
                 Labels = ArLabels;
+            ChangeLang();
+        }
+
+        private void ChangeLang()
+        {
             this.Title = Labels[0];
             Label1.Content = Labels[1];
             GroupBox1.Header = Labels[2];
@@ -95,15 +84,13 @@ namespace Primary_Number
                 this.FlowDirection = System.Windows.FlowDirection.RightToLeft;
         }
 
-        private static void Primary1()
+        private void Primary1()
         {
             int count = 2;
             SW1 = new StreamWriter(Address1);
             long m1 = DateTime.Now.Ticks;
-            SW1.Write(2);
-            SW1.Write("\n");
-            SW1.Write(3);
-            SW1.Write("\n");
+            SW1.WriteLine(2);
+            SW1.WriteLine(3);
             bool prime;
             int primeIndex;
             int plus = 2;
@@ -124,8 +111,7 @@ namespace Primary_Number
                 if (prime == true)
                 {
                     count++;
-                    SW1.Write(i);
-                    SW1.Write("\n");
+                    SW1.WriteLine(i);
                 }
                 if (plus == 2 && i > 5)
                     plus = 4;
@@ -137,7 +123,7 @@ namespace Primary_Number
             System.Windows.MessageBox.Show(string.Concat(Labels[12], count, Labels[13], Address1, Labels[14], ((Double)(m2 - m1)) / 10000, Labels[15]), Labels[0], MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private static void Primary2()
+        private void Primary2()
         {
             int plus;
             long start = n / 4;
@@ -185,8 +171,7 @@ namespace Primary_Number
                 if (prime == true)
                 {
                     count++;
-                    SW2.Write(i);
-                    SW2.Write("\n");
+                    SW2.WriteLine(i);
                 }
             }
             SW2.Close();
@@ -194,7 +179,7 @@ namespace Primary_Number
             System.Windows.MessageBox.Show(string.Concat(Labels[12], count, Labels[13], Address2, Labels[14], ((Double)(m2 - m1)) / 10000, Labels[15]), Labels[0], MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private static void Primary3()
+        private void Primary3()
         {
             int plus;
             long start = n / 2;
@@ -223,7 +208,6 @@ namespace Primary_Number
             int primeIndex;
             for (long i = start; i <= 3 * n / 4; i += plus)
             {
-
                 if (plus == 2)
                     plus = 4;
                 else
@@ -243,8 +227,7 @@ namespace Primary_Number
                 if (prime == true)
                 {
                     count++;
-                    SW3.Write(i);
-                    SW3.Write("\n");
+                    SW3.WriteLine(i);
                 }
             }
             SW3.Close();
@@ -266,8 +249,7 @@ namespace Primary_Number
                     Address = SFD.FileName;
                     StreamWriter SW = new StreamWriter(Address);
                     long m1 = DateTime.Now.Ticks;
-                    SW.Write(2);
-                    SW.Write("\n");
+                    SW.WriteLine(2);
                     bool d;
                     for (int i = 3; i <= n; i++)
                     {
@@ -281,8 +263,7 @@ namespace Primary_Number
                         if (d == true)
                         {
                             count++;
-                            SW.Write(i);
-                            SW.Write("\n");
+                            SW.WriteLine(i);
                         }
                     }
                     SW.Close();
@@ -312,8 +293,7 @@ namespace Primary_Number
                     Address1 = Address2 = Address3 = Address4 = String.Empty;
                     StreamWriter SW = new StreamWriter(Address);
                     long m1 = DateTime.Now.Ticks;
-                    SW.Write(2);
-                    SW.Write("\n");
+                    SW.WriteLine(2);
                     bool prime;
                     for (int i = 3; i <= n; i++)
                     {
@@ -328,8 +308,7 @@ namespace Primary_Number
                         if (prime == true)
                         {
                             count++;
-                            SW.Write(i);
-                            SW.Write("\n");
+                            SW.WriteLine(i);
                         }
                     }
                     SW.Close();
@@ -359,8 +338,7 @@ namespace Primary_Number
                     Address = SFD.FileName;
                     StreamWriter SW = new StreamWriter(Address);
                     long m1 = DateTime.Now.Ticks;
-                    SW.Write(2);
-                    SW.Write("\n");
+                    SW.WriteLine(2);
                     bool prime;
                     int primeIndex;
                     for (int i = 3; i <= n; i += 2)
@@ -380,8 +358,7 @@ namespace Primary_Number
                         if (prime == true)
                         {
                             count++;
-                            SW.Write(i);
-                            SW.Write("\n");
+                            SW.WriteLine(i);
                         }
                     }
                     SW.Close();
@@ -411,10 +388,8 @@ namespace Primary_Number
                     Address = SFD.FileName;
                     StreamWriter SW = new StreamWriter(Address);
                     long m1 = DateTime.Now.Ticks;
-                    SW.Write(2);
-                    SW.Write("\n");
-                    SW.Write(3);
-                    SW.Write("\n");
+                    SW.WriteLine(2);
+                    SW.WriteLine(3);
                     bool prime;
                     int primeIndex;
                     int plus = 2;
@@ -435,8 +410,7 @@ namespace Primary_Number
                         if (prime == true)
                         {
                             count++;
-                            SW.Write(i);
-                            SW.Write("\n");
+                            SW.WriteLine(i);
                         }
                         if (plus == 2 && i > 5)
                             plus = 4;
@@ -482,12 +456,9 @@ namespace Primary_Number
                         Address3 = FBD.SelectedPath + "\\" + Labels[23] + x + ".txt";
                         Address4 = FBD.SelectedPath + "\\" + Labels[24] + x + ".txt";
                     } while (File.Exists(Address1) || File.Exists(Address2) || File.Exists(Address3) || File.Exists(Address4));
-                    Thread t1;
-                    Thread t2;
-                    Thread t3;
-                    t1 = new Thread(Primary1);
-                    t2 = new Thread(Primary2);
-                    t3 = new Thread(Primary3);
+                    Thread t1 = new Thread(Primary1);
+                    Thread t2 = new Thread(Primary2);
+                    Thread t3 = new Thread(Primary3);
                     t1.Priority = System.Threading.ThreadPriority.Highest;
                     t3.Priority = System.Threading.ThreadPriority.Highest;
                     t1.Start();
@@ -539,8 +510,7 @@ namespace Primary_Number
                         if (prime == true)
                         {
                             count++;
-                            SW4.Write(i);
-                            SW4.Write("\n");
+                            SW4.WriteLine(i);
                         }
                     }
                     SW4.Close();
@@ -558,19 +528,18 @@ namespace Primary_Number
         {
             count = 0;
             Int64.TryParse(TextBox1.Text, out n);
-            if (n > 2 && n < 2147483648)
+            if (n > 2 && n < 2147483647)
             {
                 try
                 {
-                    bool[] num = new bool[n];
+                    bool[] num = new bool[n + 1];
                     long m1 = DateTime.Now.Ticks;
-                    double y = Math.Sqrt(n);
+                    double y = Math.Sqrt(n) + 1;
                     for (int i = 2; i <= y; i++)
                     {
                         if (num[i])
                             continue;
-                        for (int j = i + i; j < n; j += i)
-                            num[j] = true;
+                        Parallel.For(2, n / i + 1, (j) => { num[j * i] = true; });
                     }
                     long m2 = DateTime.Now.Ticks;
                     Is_started = true;
@@ -581,12 +550,11 @@ namespace Primary_Number
                         Address1 = Address2 = Address3 = Address4 = String.Empty;
                         Address = SFD.FileName;
                         StreamWriter SW = new StreamWriter(Address);
-                        for (int i = 2; i < n; i++)
+                        for (int i = 2; i < n + 1; i++)
                             if (!num[i])
                             {
                                 count++;
-                                SW.Write(i);
-                                SW.Write("\n");
+                                SW.WriteLine(i);
                             }
                         SW.Close();
                     }
@@ -595,7 +563,7 @@ namespace Primary_Number
                         NumberList.Items.Clear();
                         this.Width = 385;
                         NumberList.Visibility = Visibility.Visible;
-                        for (int i = 2; i < n; i++)
+                        for (int i = 2; i < n + 1; i++)
                             if (!num[i])
                                 NumberList.Items.Add(i);
                     }
@@ -613,23 +581,7 @@ namespace Primary_Number
         {
             Setting window = new Setting();
             window.ShowDialog();
-            this.Title = Labels[0];
-            Label1.Content = Labels[1];
-            GroupBox1.Header = Labels[2];
-            Slowest.Content = Labels[3];
-            Slow.Content = Labels[4];
-            Medium.Content = Labels[5];
-            Fast.Content = Labels[6];
-            Fastest.Content = Labels[7];
-            View_Numbers.Content = Labels[8];
-            Setting.ToolTip = Labels[9];
-            Help.ToolTip = Labels[10];
-            about.ToolTip = Labels[11];
-            New_Way.Content = Labels[29];
-            if (MainWindow.Labels[0][0].Equals('P'))
-                this.FlowDirection = System.Windows.FlowDirection.LeftToRight;
-            else
-                this.FlowDirection = System.Windows.FlowDirection.RightToLeft;
+            ChangeLang();
         }
 
         private void Help_Click(object sender, RoutedEventArgs e)
@@ -647,14 +599,15 @@ namespace Primary_Number
 
         private void about_Click(object sender, RoutedEventArgs e)
         {
-            Primary_Number.Info1 Win2 = new Primary_Number.Info1();
+            Info Win2 = new Info();
             Win2.ShowDialog();
         }
 
         private void ViewNumber_Checked(object sender, RoutedEventArgs e)
         {
-            if (Is_started && !Address.Equals(String.Empty) && File.Exists(Address))
-                View_Number();
+            if (Address != null)
+                if (Is_started && !Address.Equals(String.Empty) && File.Exists(Address))
+                    View_Number();
             View_number = true;
         }
 
