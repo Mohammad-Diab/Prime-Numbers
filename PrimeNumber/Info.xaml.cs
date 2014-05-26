@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,14 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Primary_Number
+namespace PrimeNumber
 {
     /// <summary>
-    /// Interaction logic for Info1.xaml
+    /// Interaction logic for Info.xaml
     /// </summary>
-    public partial class Info1 : Window
+    public partial class Info : Window
+
     {
-        public Info1()
+        public Info()
         {
             InitializeComponent();
         }

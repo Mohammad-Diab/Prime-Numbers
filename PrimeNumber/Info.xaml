@@ -1,12 +1,12 @@
-﻿<Window x:Class="Primary_Number.Info1"
+﻿<Window x:Class="PrimeNumber.Info"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-         Title="عن" Height="285" Width="391" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FlowDirection="LeftToRight" Icon="about.png" Loaded="Window_Loaded_1">
+         Title="عن" Height="285" Width="391" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FlowDirection="LeftToRight" Icon="Images/about.png" Loaded="Window_Loaded_1">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Image Margin="128,10,128,0" Height="128" VerticalAlignment="Top" Source="Icon.png"/>
+        <Image Margin="128,10,128,0" Height="128" VerticalAlignment="Top" Source="Images/Icon.png"/>
         <Label Content="Dr.Mohammad@outlook.com " Margin="84,0,0,44" VerticalAlignment="Bottom" FontSize="14" FontFamily="Segoe Print" Height="35" Foreground="Red" HorizontalAlignment="Left" Width="217"/>
         <Label x:Name="Label1" Content="Primary Numbers Finding Methods" Margin="0,0,65,89" VerticalAlignment="Bottom" FontSize="14" FontFamily="Segoe Print" Height="35" HorizontalAlignment="Right">
             <Label.Foreground>
@@ -16,7 +16,7 @@
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
-        <Image HorizontalAlignment="Left" Margin="15,0,0,21" Width="59" Height="77" VerticalAlignment="Bottom" Source="xbill.png" FlowDirection="LeftToRight"/>
+        <Image HorizontalAlignment="Left" Margin="15,0,0,21" Width="59" Height="77" VerticalAlignment="Bottom" Source="Images/xbill.png" FlowDirection="LeftToRight"/>
         <Button x:Name="Closes" Content="Close" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="90" Background="{x:Null}" Height="25" Click="Close_Click_1"/>
     </Grid>
 </Window>

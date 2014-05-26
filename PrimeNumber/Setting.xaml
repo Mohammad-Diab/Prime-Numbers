@@ -1,4 +1,4 @@
-﻿<Window x:Class="Primary_Number.Setting"
+﻿<Window x:Class="PrimeNumber.Setting"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="الاعدادات" Height="125" Width="300" ResizeMode="NoResize" FlowDirection="RightToLeft" Loaded="Window_Loaded_1" WindowStartupLocation="CenterScreen">
