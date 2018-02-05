@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prime_Number", "Primary_NumberC\Prime_Number.csproj", "{7E286B6E-93D2-4C86-82A3-0A94A9E003E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E286B6E-93D2-4C86-82A3-0A94A9E003E5}.Debug|x86.ActiveCfg = Debug|x86
+		{7E286B6E-93D2-4C86-82A3-0A94A9E003E5}.Debug|x86.Build.0 = Debug|x86
+		{7E286B6E-93D2-4C86-82A3-0A94A9E003E5}.Release|x86.ActiveCfg = Release|x86
+		{7E286B6E-93D2-4C86-82A3-0A94A9E003E5}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
