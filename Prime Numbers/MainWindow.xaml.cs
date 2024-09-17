@@ -282,7 +282,7 @@ namespace Prime_Numbers
         private void Slow_Click(object sender, RoutedEventArgs e)
         {
             Int64.TryParse(TextBox1.Text, out n);
-            if (n > 2 && n < 1000000000000)
+            if (n > 2 && n <= 1000000000000)
             {
                 count = 1;
                 SaveFileDialog SFD = new SaveFileDialog();
@@ -327,7 +327,7 @@ namespace Prime_Numbers
         private void Medium_Click(object sender, RoutedEventArgs e)
         {
             Int64.TryParse(TextBox1.Text, out n);
-            if (n > 2 && n < 1000000000000)
+            if (n > 2 && n <= 1000000000000)
             {
                 count = 1;
                 SaveFileDialog SFD = new SaveFileDialog();
@@ -377,7 +377,7 @@ namespace Prime_Numbers
         private void Fast_Click(object sender, RoutedEventArgs e)
         {
             Int64.TryParse(TextBox1.Text, out n);
-            if (n > 5 && n < 1000000000000)
+            if (n > 5 && n <= 1000000000000)
             {
                 count = 2;
                 SaveFileDialog SFD = new SaveFileDialog();
@@ -433,7 +433,7 @@ namespace Prime_Numbers
         private void Faster_Click(object sender, RoutedEventArgs e)
         {
             Int64.TryParse(TextBox1.Text, out n);
-            if (n >= 16 && n < 1000000000000)
+            if (n >= 16 && n <= 1000000000000)
             {
                 Address = String.Empty;
                 count = 2;
