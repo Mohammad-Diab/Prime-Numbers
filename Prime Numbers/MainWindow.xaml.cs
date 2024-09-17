@@ -37,7 +37,7 @@ namespace Prime_Numbers
         public static string Address4;
         string Address;
         public static Int64 n = 0;
-        int count = 0;
+        long count = 0;
         bool Is_started = false, View_number = false;
         public static string[] Labels;
         public static string[] EnLabels = { "Prime Numbers", "Find prime numbers which is smaller than:", "Prime Numbers (Methods &...", "Slowest", "Slow", "Medium", "Fast", "*Very Fast", "View Numbers", "Setting", "Help", "about", "'", "' Prime numbers have been saved'", "'\nin '", "' Millisecond", "You should choose a file name!", "The number you have chosen must be in ", "Select folder to put files in:", "You should choose a folder!", "Text Document", "First", "Second", "Third", "Fourth", "Language", "Save", "Cancel", "Close", "The Fastest" };
@@ -86,7 +86,7 @@ namespace Prime_Numbers
 
         private void Primary1()
         {
-            int count = 2;
+            long count = 2;
             SW1 = new StreamWriter(Address1);
             long m1 = DateTime.Now.Ticks;
             SW1.WriteLine(2);
@@ -94,7 +94,7 @@ namespace Prime_Numbers
             bool prime;
             int primeIndex;
             int plus = 2;
-            for (int i = 5; i <= n / 4; i += plus)
+            for (long i = 5; i <= n / 4; i += plus)
             {
                 prime = true;
                 double y = Math.Sqrt(i);
@@ -145,7 +145,7 @@ namespace Prime_Numbers
                     continue;
                 }
             }
-            int count = 0;
+            long count = 0;
             SW2 = new StreamWriter(Address2);
             long m1 = DateTime.Now.Ticks;
             bool prime;
@@ -201,7 +201,7 @@ namespace Prime_Numbers
                     continue;
                 }
             }
-            int count = 0;
+            long count = 0;
             SW3 = new StreamWriter(Address3);
             long m1 = DateTime.Now.Ticks;
             bool prime;
@@ -295,7 +295,7 @@ namespace Prime_Numbers
                     long m1 = DateTime.Now.Ticks;
                     SW.WriteLine(2);
                     bool prime;
-                    for (int i = 3; i <= n; i++)
+                    for (long i = 3; i <= n; i++)
                     {
                         prime = true;
                         double y = Math.Sqrt(i);
@@ -341,7 +341,7 @@ namespace Prime_Numbers
                     SW.WriteLine(2);
                     bool prime;
                     int primeIndex;
-                    for (int i = 3; i <= n; i += 2)
+                    for (long i = 3; i <= n; i += 2)
                     {
                         prime = true;
                         double y = Math.Sqrt(i);
@@ -393,7 +393,7 @@ namespace Prime_Numbers
                     bool prime;
                     int primeIndex;
                     int plus = 2;
-                    for (int i = 5; i <= n; i += plus)
+                    for (long i = 5; i <= n; i += plus)
                     {
                         prime = true;
                         double y = Math.Sqrt(i);
