@@ -113,6 +113,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Help.ppsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Image\about.png" />
     <Resource Include="Image\Help.png" />
     <Resource Include="Image\Icon.ico" />

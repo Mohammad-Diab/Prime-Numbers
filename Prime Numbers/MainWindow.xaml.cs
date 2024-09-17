@@ -44,8 +44,8 @@ namespace Prime_Numbers
         long count = 0;
         bool Is_started = false, View_number = false;
         public static string[] Labels;
-        public static string[] EnLabels = { "Prime Numbers", "Find prime numbers which is smaller than:", "Prime Numbers (Methods &...", "Slowest", "Slow", "Medium", "Fast", "*Very Fast", "View Numbers", "Setting", "Help", "about", "'", "' Prime numbers have been saved'", "'\nin '", "' Millisecond", "You should choose a file name!", "The number you have chosen must be in ", "Select folder to put files in:", "You should choose a folder!", "Text Document", "First", "Second", "Third", "Fourth", "Language", "Save", "Cancel", "Close", "The Fastest" };
-        public static string[] ArLabels = { "الأعداد الأولية", "إيجاد الأعداد الأولية التي هي أصغر أو تساوي:", "الأعداد الأولية (الطرق والتحسينات)", "الأبطئ", "بطيء", "متوسط السرعة", "سريع", "*سريع جدا", "عرض الأعداد", "اعدادات", "مساعدة", "عن", "تم حفظ '", "' رقم أولى الى المسار'", "'\nخلال '", "' ميلي ثانية", "يجب اختيار اسم ملف", "يجب اختيار العدد ضمن المجال ", "حدد مجلدا لنضع الملفات فيه", "يجب اختيار مجلد", "مستند نصي", "الملف الاول", "الملف الثاني", "الملف الثالث", "الملف الرابع", "اللغة", "حفظ", "الغاء", "أغلق", "الأسرع" };
+        public static string[] EnLabels = { "Prime Numbers", "Find prime numbers which is smaller than:", "Prime Numbers (Methods &...", "Slowest", "Slow", "Medium", "Fast", "*Very Fast", "View Numbers", "Setting", "Help", "about", "'", "' Prime numbers have been saved'", "'\nin '", "' Millisecond", "You should choose a file name!", "The number you have chosen must be in ", "Select folder to put files in:", "You should choose a folder!", "Text Document", "First", "Second", "Third", "Fourth", "Language", "Save", "Cancel", "Close", "The Fastest", "The help file was not found:\n" };
+        public static string[] ArLabels = { "الأعداد الأولية", "إيجاد الأعداد الأولية التي هي أصغر أو تساوي:", "الأعداد الأولية (الطرق والتحسينات)", "الأبطئ", "بطيء", "متوسط السرعة", "سريع", "*سريع جدا", "عرض الأعداد", "اعدادات", "مساعدة", "عن", "تم حفظ '", "' رقم أولى الى المسار'", "'\nخلال '", "' ميلي ثانية", "يجب اختيار اسم ملف", "يجب اختيار العدد ضمن المجال ", "حدد مجلدا لنضع الملفات فيه", "يجب اختيار مجلد", "مستند نصي", "الملف الاول", "الملف الثاني", "الملف الثالث", "الملف الرابع", "اللغة", "حفظ", "الغاء", "أغلق", "الأسرع", "لم يتم العثور على ملف المساعدة:\n" };
         public static List<int> Division;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -603,15 +603,21 @@ namespace Prime_Numbers
 
         private void Help_Click(object sender, RoutedEventArgs e)
         {
-            try
+            string HelpFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Help.ppsx");
+            if (File.Exists(HelpFile))
             {
-                System.Diagnostics.ProcessStartInfo PSI = new System.Diagnostics.ProcessStartInfo("Help.ppsx");
-                System.Diagnostics.Process.Start(PSI);
+                try
+                {
+                    System.Diagnostics.ProcessStartInfo PSI = new System.Diagnostics.ProcessStartInfo(HelpFile);
+                    System.Diagnostics.Process.Start(PSI);
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            else
+                System.Windows.MessageBox.Show(Labels[30] + HelpFile, Labels[0], MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void about_Click(object sender, RoutedEventArgs e)
