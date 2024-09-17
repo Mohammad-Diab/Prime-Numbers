@@ -99,7 +99,7 @@ namespace Prime_Numbers
                 prime = true;
                 double y = Math.Sqrt(i);
                 primeIndex = 0;
-                while (Division[primeIndex] <= y)
+                while (primeIndex < Division.Count && Division[primeIndex] <= y)
                 {
                     if (i % Division[primeIndex] == 0)
                     {
@@ -159,7 +159,7 @@ namespace Prime_Numbers
                 prime = true;
                 double y = Math.Sqrt(i);
                 primeIndex = 0;
-                while (Division[primeIndex] <= y)
+                while (primeIndex < Division.Count && Division[primeIndex] <= y)
                 {
                     if (i % Division[primeIndex] == 0)
                     {
@@ -215,7 +215,7 @@ namespace Prime_Numbers
                 prime = true;
                 double y = Math.Sqrt(i);
                 primeIndex = 0;
-                while (Division[primeIndex] <= y)
+                while (primeIndex < Division.Count && Division[primeIndex] <= y)
                 {
                     if (i % Division[primeIndex] == 0)
                     {
@@ -346,7 +346,7 @@ namespace Prime_Numbers
                         prime = true;
                         double y = Math.Sqrt(i);
                         primeIndex = 0;
-                        while (Division[primeIndex] <= y)
+                        while (primeIndex < Division.Count && Division[primeIndex] <= y)
                         {
                             if (i % Division[primeIndex] == 0)
                             {
@@ -398,7 +398,7 @@ namespace Prime_Numbers
                         prime = true;
                         double y = Math.Sqrt(i);
                         primeIndex = 0;
-                        while (Division[primeIndex] <= y)
+                        while (primeIndex < Division.Count && Division[primeIndex] <= y)
                         {
                             if (i % Division[primeIndex] == 0)
                             {
@@ -498,7 +498,7 @@ namespace Prime_Numbers
                         prime = true;
                         double y = Math.Sqrt(i);
                         primeIndex = 0;
-                        while (Division[primeIndex] <= y)
+                        while (primeIndex < Division.Count && Division[primeIndex] <= y)
                         {
                             if (i % Division[primeIndex] == 0)
                             {
