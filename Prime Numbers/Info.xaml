@@ -7,7 +7,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Image Margin="128,10,128,0" Height="128" VerticalAlignment="Top" Source="Image/Icon.png"/>
-        <Label Content="Dr.Mohammad@outlook.com " Margin="84,0,0,44" VerticalAlignment="Bottom" FontSize="14" FontFamily="Segoe Print" Height="35" Foreground="Red" HorizontalAlignment="Left" Width="217"/>
+        <Label Content="mohammad.diab93@outlook.com " Margin="84,0,0,44" VerticalAlignment="Bottom" FontSize="14" FontFamily="Segoe Print" Height="35" Foreground="Red" HorizontalAlignment="Left" Width="217"/>
         <Label x:Name="Label1" Content="Primary Numbers Finding Methods" Margin="0,0,65,89" VerticalAlignment="Bottom" FontSize="14" FontFamily="Segoe Print" Height="35" HorizontalAlignment="Right">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
