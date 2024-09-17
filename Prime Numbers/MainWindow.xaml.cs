@@ -557,7 +557,6 @@ namespace Prime_Numbers
                         Parallel.For(2, n / i + 1, (j) => { num[j * i] = true; });
                     }
                     long m2 = DateTime.Now.Ticks;
-                    Is_started = true;
                     SaveFileDialog SFD = new SaveFileDialog();
                     SFD.Filter = Labels[20] + "(*.Txt) |*.txt";
                     if (SFD.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -572,24 +571,27 @@ namespace Prime_Numbers
                                 SW.WriteLine(i);
                             }
                         SW.Close();
+                        Is_started = true;
+                        if (View_number)
+                        {
+                            NumberList.Items.Clear();
+                            this.Width = 385;
+                            NumberList.Visibility = Visibility.Visible;
+                            for (int i = 2; i < n + 1; i++)
+                                if (!num[i])
+                                    NumberList.Items.Add(i);
+                        }
+                        System.Windows.MessageBox.Show(string.Concat(Labels[12], count, Labels[13], Address, Labels[14], ((Double)(m2 - m1)) / 10000, Labels[15]), Labels[0], MessageBoxButton.OK, MessageBoxImage.Information);
                     }
-                    if (View_number)
-                    {
-                        NumberList.Items.Clear();
-                        this.Width = 385;
-                        NumberList.Visibility = Visibility.Visible;
-                        for (int i = 2; i < n + 1; i++)
-                            if (!num[i])
-                                NumberList.Items.Add(i);
-                    }
-                    System.Windows.MessageBox.Show(string.Concat(Labels[12], count, Labels[13], Address, Labels[14], ((Double)(m2 - m1)) / 10000, Labels[15]), Labels[0], MessageBoxButton.OK, MessageBoxImage.Information);
+                    else
+                        System.Windows.MessageBox.Show(Labels[16], Labels[0], MessageBoxButton.OK, MessageBoxImage.Error);
                     num = null;
                 }
                 catch (Exception ex)
                 { System.Windows.MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
             }
             else
-                System.Windows.MessageBox.Show(Labels[17] + "[16,2147483647]", Labels[0], MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show(Labels[17] + "[3,2147483646]", Labels[0], MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void Setting_Click(object sender, RoutedEventArgs e)
