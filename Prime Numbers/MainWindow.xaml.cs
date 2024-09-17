@@ -643,9 +643,9 @@ namespace Prime_Numbers
                 NumberList.Items.Clear();
                 this.Width = 385;
                 NumberList.Visibility = Visibility.Visible;
-                StreamReader SR = new StreamReader(File.OpenRead(Address));
-                while (!SR.EndOfStream)
-                    NumberList.Items.Add(SR.ReadLine());
+                using (StreamReader SR = new StreamReader(File.OpenRead(Address)))
+                    while (!SR.EndOfStream)
+                        NumberList.Items.Add(SR.ReadLine());
             }
             catch (Exception ex)
             { System.Windows.MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
