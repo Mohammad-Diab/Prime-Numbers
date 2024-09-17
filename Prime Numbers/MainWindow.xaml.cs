@@ -35,6 +35,10 @@ namespace Prime_Numbers
         public static string Address2;
         public static string Address3;
         public static string Address4;
+        public static long Count1;
+        public static long Count2;
+        public static long Count3;
+        public static long Count4;
         string Address;
         public static Int64 n = 0;
         long count = 0;
@@ -88,7 +92,6 @@ namespace Prime_Numbers
         {
             long count = 2;
             SW1 = new StreamWriter(Address1);
-            long m1 = DateTime.Now.Ticks;
             SW1.WriteLine(2);
             SW1.WriteLine(3);
             bool prime;
@@ -119,14 +122,13 @@ namespace Prime_Numbers
                     plus = 2;
             }
             SW1.Close();
-            long m2 = DateTime.Now.Ticks;
-            System.Windows.MessageBox.Show(string.Concat(Labels[12], count, Labels[13], Address1, Labels[14], ((Double)(m2 - m1)) / 10000, Labels[15]), Labels[0], MessageBoxButton.OK, MessageBoxImage.Information);
+            Count1 = count;
         }
 
         private void Primary2()
         {
             int plus;
-            long start = n / 4;
+            long start = n / 4 + 1;
             while (true)
             {
                 if (start % 6 == 1)
@@ -147,7 +149,6 @@ namespace Prime_Numbers
             }
             long count = 0;
             SW2 = new StreamWriter(Address2);
-            long m1 = DateTime.Now.Ticks;
             bool prime;
             int primeIndex;
             for (long i = start; i <= n / 2; i += plus)
@@ -175,14 +176,13 @@ namespace Prime_Numbers
                 }
             }
             SW2.Close();
-            long m2 = DateTime.Now.Ticks;
-            System.Windows.MessageBox.Show(string.Concat(Labels[12], count, Labels[13], Address2, Labels[14], ((Double)(m2 - m1)) / 10000, Labels[15]), Labels[0], MessageBoxButton.OK, MessageBoxImage.Information);
+            Count2 = count;
         }
 
         private void Primary3()
         {
             int plus;
-            long start = n / 2;
+            long start = n / 2 + 1;
             while (true)
             {
                 if (start % 6 == 1)
@@ -203,7 +203,6 @@ namespace Prime_Numbers
             }
             long count = 0;
             SW3 = new StreamWriter(Address3);
-            long m1 = DateTime.Now.Ticks;
             bool prime;
             int primeIndex;
             for (long i = start; i <= 3 * n / 4; i += plus)
@@ -231,8 +230,61 @@ namespace Prime_Numbers
                 }
             }
             SW3.Close();
-            long m2 = DateTime.Now.Ticks;
-            System.Windows.MessageBox.Show(string.Concat(Labels[12], count, Labels[13], Address3, Labels[14], ((Double)(m2 - m1)) / 10000, Labels[15]), Labels[0], MessageBoxButton.OK, MessageBoxImage.Information);
+            Count3 = count;
+        }
+
+        private void Primary4()
+        {
+            int plus;
+            long start = 3 * n / 4 + 1;
+            while (true)
+            {
+                if (start % 6 == 1)
+                {
+                    plus = 2;
+                    break;
+                }
+                else if (start % 6 == 5)
+                {
+                    plus = 4;
+                    break;
+                }
+                else
+                {
+                    start++;
+                    continue;
+                }
+            }
+            long count = 0;
+            SW4 = new StreamWriter(Address4);
+            bool prime;
+            int primeIndex;
+            for (long i = start; i <= n; i += plus)
+            {
+                if (plus == 2)
+                    plus = 4;
+                else
+                    plus = 2;
+                prime = true;
+                double y = Math.Sqrt(i);
+                primeIndex = 0;
+                while (primeIndex < Division.Count && Division[primeIndex] <= y)
+                {
+                    if (i % Division[primeIndex] == 0)
+                    {
+                        prime = false;
+                        break;
+                    }
+                    primeIndex++;
+                }
+                if (prime == true)
+                {
+                    count++;
+                    SW4.WriteLine(i);
+                }
+            }
+            SW4.Close();
+            Count4 = count;
         }
 
         private void Slowest_Click(object sender, RoutedEventArgs e)
@@ -441,12 +493,6 @@ namespace Prime_Numbers
                 FBD.Description = Labels[18];
                 if (FBD.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    if (n % 4 == 3)
-                        n = n + 1;
-                    else if (n % 4 == 2)
-                        n = n + 2;
-                    else if (n % 4 == 1)
-                        n = n + 3;
                     do
                     {
                         Random Rand = new Random((Int32)DateTime.Now.Ticks);
@@ -456,66 +502,35 @@ namespace Prime_Numbers
                         Address3 = FBD.SelectedPath + "\\" + Labels[23] + x + ".txt";
                         Address4 = FBD.SelectedPath + "\\" + Labels[24] + x + ".txt";
                     } while (File.Exists(Address1) || File.Exists(Address2) || File.Exists(Address3) || File.Exists(Address4));
-                    Thread t1 = new Thread(Primary1);
-                    Thread t2 = new Thread(Primary2);
-                    Thread t3 = new Thread(Primary3);
-                    t1.Priority = System.Threading.ThreadPriority.Highest;
-                    t3.Priority = System.Threading.ThreadPriority.Highest;
-                    t1.Start();
-                    t2.Start();
-                    t3.Start();
-                    int plus;
-                    long start = 3 * n / 4;
-                    while (true)
+                    string Folder = FBD.SelectedPath;
+                    GroupBox1.IsEnabled = false;
+                    Thread t = new Thread(() =>
                     {
-                        if (start % 6 == 1)
+                        long m1 = DateTime.Now.Ticks;
+                        Thread t1 = new Thread(Primary1);
+                        Thread t2 = new Thread(Primary2);
+                        Thread t3 = new Thread(Primary3);
+                        Thread t4 = new Thread(Primary4);
+                        t1.Priority = System.Threading.ThreadPriority.Highest;
+                        t3.Priority = System.Threading.ThreadPriority.Highest;
+                        t1.IsBackground = t2.IsBackground = t3.IsBackground = t4.IsBackground = true;
+                        t1.Start();
+                        t2.Start();
+                        t3.Start();
+                        t4.Start();
+                        t1.Join();
+                        t2.Join();
+                        t3.Join();
+                        t4.Join();
+                        long m2 = DateTime.Now.Ticks;
+                        this.Dispatcher.Invoke(new Action(() =>
                         {
-                            plus = 2;
-                            break;
-                        }
-                        else if (start % 6 == 5)
-                        {
-                            plus = 4;
-                            break;
-                        }
-                        else
-                        {
-                            start++;
-                            continue;
-                        }
-                    }
-                    count = 0;
-                    SW4 = new StreamWriter(Address4);
-                    long m1 = DateTime.Now.Ticks;
-                    bool prime;
-                    int primeIndex;
-                    for (long i = start; i <= n; i += plus)
-                    {
-                        if (plus == 2)
-                            plus = 4;
-                        else
-                            plus = 2;
-                        prime = true;
-                        double y = Math.Sqrt(i);
-                        primeIndex = 0;
-                        while (primeIndex < Division.Count && Division[primeIndex] <= y)
-                        {
-                            if (i % Division[primeIndex] == 0)
-                            {
-                                prime = false;
-                                break;
-                            }
-                            primeIndex++;
-                        }
-                        if (prime == true)
-                        {
-                            count++;
-                            SW4.WriteLine(i);
-                        }
-                    }
-                    SW4.Close();
-                    long m2 = DateTime.Now.Ticks;
-                    System.Windows.MessageBox.Show(string.Concat(Labels[12], count, Labels[13], Address, Labels[14], ((Double)(m2 - m1)) / 10000, Labels[15]), Labels[0], MessageBoxButton.OK, MessageBoxImage.Information);
+                            GroupBox1.IsEnabled = true;
+                            System.Windows.MessageBox.Show(string.Concat(Labels[12], Count1 + Count2 + Count3 + Count4, Labels[13], Folder, Labels[14], ((Double)(m2 - m1)) / 10000, Labels[15]), Labels[0], MessageBoxButton.OK, MessageBoxImage.Information);
+                        }));
+                    });
+                    t.IsBackground = true;
+                    t.Start();
                 }
                 else
                     System.Windows.MessageBox.Show(Labels[19], Labels[0], MessageBoxButton.OK, MessageBoxImage.Error);
