@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Windows Desktop
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prime_Number", "Primary_NumberC\Prime_Number.csproj", "{7E286B6E-93D2-4C86-82A3-0A94A9E003E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prime_Number", "Prime Numbers\Prime_Number.csproj", "{7E286B6E-93D2-4C86-82A3-0A94A9E003E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
